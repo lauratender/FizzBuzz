@@ -2,7 +2,7 @@
 
 import * as readline from 'readline';
 
-function changeMessage(currNr:number, div: number, previousString :string): string{
+function changeMessage(currNr: number, div: number, previousString: string): string {
     if (currNr % div == 0){
         let addedString: string = specificMessages.get(div) || "";
         return previousString.concat(addedString);
@@ -10,7 +10,7 @@ function changeMessage(currNr:number, div: number, previousString :string): stri
     return previousString;
 }
 
-function getMessage(currNr: number): string{
+function getMessage(currNr: number): string {
     let lastString :string = "";
     let problemDivisorsCopy :number[] = problemDivisors.slice();
 
@@ -28,7 +28,7 @@ function getMessage(currNr: number): string{
     return lastString;
 }
 
-function runSolution(): void{
+function runSolution(): void {
     for (let i = 1; i <= maxNumber; i++){
         console.log(getMessage(i));
     }

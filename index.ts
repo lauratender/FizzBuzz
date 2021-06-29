@@ -28,7 +28,7 @@ function getMessage(currNr: number): string {
     return lastString;
 }
 
-function runSolution(): void {
+function runSolution(maxNumber: number): void {
     for (let i = 1; i <= maxNumber; i++){
         console.log(getMessage(i));
     }
@@ -49,11 +49,9 @@ let rl = readline.createInterface({
     output: process.stdout
 });
 
-var maxNumber: number;
-
 rl.question('Type the maximum number ', (answer) => {
-    maxNumber = parseInt(answer) || 100;
-    runSolution()
+    let maxNumber: number = parseInt(answer) || 100;
+    runSolution(maxNumber);
     rl.close();
 });
 

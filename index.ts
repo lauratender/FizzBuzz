@@ -1,42 +1,36 @@
-/* Part 2 */
+/* Prompt the user for a maximum number */
+
 import * as readline from 'readline';
 
-function isChanged(n: number): boolean{
-    for (let div of problemDivisors){
-        if (n % div == 0)
-            return true;
-    }
-    return false;
-}
-
-function changeMessage(n:number, d: number, previousString :string): string{
-    if (n % d == 0){
-        let addedString: string = specificMessages.get(d) || "";
+function changeMessage(currNr:number, div: number, previousString :string): string{
+    if (currNr % div == 0){
+        let addedString: string = specificMessages.get(div) || "";
         return previousString.concat(addedString);
     }
     return previousString;
 }
 
-function getMessage(n: number): string{
+function getMessage(currNr: number): string{
     let lastString :string = "";
     let problemDivisorsCopy :number[] = problemDivisors.slice();
 
-    if (n % 17 == 0){
+    if (currNr % 17 == 0){
         problemDivisorsCopy.reverse();
     }
 
     for (let div of problemDivisorsCopy){
-        lastString = changeMessage(n, div, lastString);
+        lastString = changeMessage(currNr, div, lastString);
     }
+
+    if (lastString == "")
+        lastString = currNr.toString();
+
     return lastString;
 }
 
 function runSolution(): void{
     for (let i = 1; i <= maxNumber; i++){
-        if (isChanged(i))
-            console.log(getMessage(i));
-        else
-            console.log(i);
+        console.log(getMessage(i));
     }
 }
 

@@ -1,4 +1,5 @@
 /* Part 2 */
+import * as readline from 'readline';
 
 function isChanged(n: number): boolean{
     for (let div of problemDivisors){
@@ -30,6 +31,15 @@ function getMessage(n: number): string{
     return lastString;
 }
 
+function runSolution(): void{
+    for (let i = 1; i <= maxNumber; i++){
+        if (isChanged(i))
+            console.log(getMessage(i));
+        else
+            console.log(i);
+    }
+}
+
 const problemDivisors = [3, 5, 7, 11, 13];
 
 const specificMessages = new Map([
@@ -40,11 +50,16 @@ const specificMessages = new Map([
     [13,"Fezz"]
   ]);
 
-const maxNumber: number = 100;
+let rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
-for (let i = 1; i <= maxNumber; i++){
-    if (isChanged(i))
-        console.log(getMessage(i));
-    else
-        console.log(i);
-}
+var maxNumber: number;
+
+rl.question('Type the maximum number ', (answer) => {
+    maxNumber = parseInt(answer) || 100;
+    runSolution()
+    rl.close();
+});
+
